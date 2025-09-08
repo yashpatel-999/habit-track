@@ -1,0 +1,34 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-brand">
+      <a routerLink="/habits" class="brand-link">
+        <h1>Habit Tracker</h1>
+      </a>
+    </div>
+
+    <div class="navbar-menu" *ngIf="isLoggedIn()">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a routerLink="/habits" routerLinkActive="active" class="nav-link">My Habits</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/habits/new" routerLinkActive="active" class="nav-link">Add Habit</a>
+        </li>
+      </ul>
+
+      <div class="navbar-user">
+        <span class="user-greeting" *ngIf="currentUser">
+          Welcome, {{ currentUser.username }}!
+        </span>
+        <button class="btn btn-logout" (click)="logout()">
+          Logout
+        </button>
+      </div>
+    </div>
+
+    <div class="navbar-auth" *ngIf="!isLoggedIn()">
+      <a routerLink="/login" routerLinkActive="active" class="nav-link">Login</a>
+      <a routerLink="/signup" routerLinkActive="active" class="nav-link">Sign Up</a>
+    </div>
+  </div>
+</nav>

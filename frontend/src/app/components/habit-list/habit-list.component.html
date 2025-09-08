@@ -1,0 +1,56 @@
+<div class="habit-list-container">
+  <div class="header">
+    <h2>My Habits</h2>
+    <button class="btn btn-primary" (click)="addNewHabit()">
+      Add New Habit
+    </button>
+  </div>
+
+  <div class="error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <div class="loading" *ngIf="isLoading">
+    Loading habits...
+  </div>
+
+  <div class="habits-grid" *ngIf="!isLoading && habits.length > 0">
+    <div class="habit-card" *ngFor="let habit of habits">
+      <div class="habit-header">
+        <h3>{{ habit.title }}</h3>
+        <div class="habit-actions">
+          <button class="btn btn-small btn-success" (click)="logCompletion(habit.id)">
+            ✓ Complete
+          </button>
+          <button class="btn btn-small btn-secondary" (click)="viewProgress(habit.id)">
+            Progress
+          </button>
+          <button class="btn btn-small btn-warning" (click)="editHabit(habit.id)">
+            Edit
+          </button>
+          <button class="btn btn-small btn-danger" (click)="deleteHabit(habit.id)">
+            Delete
+          </button>
+        </div>
+      </div>
+      
+      <div class="habit-description">
+        <p>{{ habit.description }}</p>
+      </div>
+      
+      <div class="habit-meta">
+        <small>Frequency: {{ habit.frequency }}</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="!isLoading && habits.length === 0">
+    <div class="empty-content">
+      <h3>No habits yet</h3>
+      <p>Start building better habits by creating your first one!</p>
+      <button class="btn btn-primary" (click)="addNewHabit()">
+        Create Your First Habit
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,81 @@
+<div class="habit-form-container">
+  <div class="habit-form-card">
+    <div class="form-header">
+      <h2>{{ pageTitle }}</h2>
+    </div>
+    
+    <form [formGroup]="habitForm" (ngSubmit)="onSubmit()" class="habit-form">
+      <div class="form-group">
+        <label for="title">Habit Title *</label>
+        <input 
+          type="text" 
+          id="title" 
+          formControlName="title"
+          class="form-control"
+          placeholder="e.g., Exercise, Read books, Drink water"
+          [class.error]="title?.invalid && title?.touched"
+        >
+        <div class="error-message" *ngIf="title?.invalid && title?.touched">
+          <span *ngIf="title?.errors?.['required']">Habit title is required</span>
+          <span *ngIf="title?.errors?.['minlength']">Habit title must be at least 3 characters</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description *</label>
+        <textarea 
+          id="description" 
+          formControlName="description"
+          class="form-control textarea"
+          placeholder="Describe your habit in detail. What do you want to achieve?"
+          rows="4"
+          [class.error]="description?.invalid && description?.touched"
+        ></textarea>
+        <div class="error-message" *ngIf="description?.invalid && description?.touched">
+          <span *ngIf="description?.errors?.['required']">Description is required</span>
+          <span *ngIf="description?.errors?.['minlength']">Description must be at least 10 characters</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="frequency">Frequency *</label>
+        <select 
+          id="frequency" 
+          formControlName="frequency"
+          class="form-control"
+          [class.error]="frequency?.invalid && frequency?.touched"
+        >
+          <option value="daily">Daily</option>
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+        </select>
+        <div class="error-message" *ngIf="frequency?.invalid && frequency?.touched">
+          <span *ngIf="frequency?.errors?.['required']">Frequency is required</span>
+        </div>
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <div class="form-actions">
+        <button 
+          type="button" 
+          class="btn btn-secondary"
+          (click)="cancel()"
+        >
+          Cancel
+        </button>
+        
+        <button 
+          type="submit" 
+          class="btn btn-primary"
+          [disabled]="habitForm.invalid || isLoading"
+        >
+          <span *ngIf="isLoading">{{ isEditMode ? 'Updating...' : 'Creating...' }}</span>
+          <span *ngIf="!isLoading">{{ isEditMode ? 'Update Habit' : 'Create Habit' }}</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

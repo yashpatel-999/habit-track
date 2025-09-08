@@ -1,0 +1,76 @@
+<div class="progress-container">
+  <div class="header">
+    <button class="btn btn-secondary" (click)="goBack()">
+      ← Back to Habits
+    </button>
+    <h2>Habit Progress</h2>
+    <button class="btn btn-success" (click)="logCompletion()" *ngIf="habit">
+      ✓ Log Completion
+    </button>
+  </div>
+
+  <div class="loading" *ngIf="isLoading">
+    Loading progress data...
+  </div>
+
+  <div class="error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <div class="progress-content" *ngIf="!isLoading && habit && progress">
+    <!-- Habit Info -->
+    <div class="habit-info-card">
+      <h3>{{ habit.title }}</h3>
+      <p>{{ habit.description }}</p>
+      <small>Frequency: {{ habit.frequency }}</small>
+    </div>
+
+    <!-- Progress Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">{{ progress.completed_days }}</div>
+        <div class="stat-label">Total Completions</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-number">{{ progress.total_days }}</div>
+        <div class="stat-label">Total Days Tracked</div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-number">{{ progress.completion_percentage | number:'1.1-1' }}%</div>
+        <div class="stat-label">Completion Rate</div>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="recent-activity">
+      <h4>Quick Actions</h4>
+      
+      <div class="activity-actions">
+        <button class="btn btn-primary" (click)="logCompletion()">
+          Log Completion Today
+        </button>
+        <button class="btn btn-secondary" (click)="editHabit()">
+          Edit Habit
+        </button>
+      </div>
+    </div>
+
+    <!-- Progress Visualization -->
+    <div class="progress-visualization">
+      <h4>Progress Overview</h4>
+      <div class="progress-bar-container">
+        <div class="progress-bar">
+          <div 
+            class="progress-fill" 
+            [style.width.%]="progress.completion_percentage"
+          ></div>
+        </div>
+        <span class="progress-text">
+          {{ progress.completion_percentage | number:'1.1-1' }}% completion rate
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
