@@ -44,3 +44,6 @@ html, body {
 .p-3 { padding: 1rem; }
 .p-4 { padding: 1.5rem; }
 .p-5 { padding: 3rem; }
+.app-bg{
+  background-color: #f8f9fa;
+}

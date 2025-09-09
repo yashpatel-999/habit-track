@@ -272,3 +272,6 @@
     grid-template-columns: 1fr;
   }
 }
+.comp-button{
+  margin-right:10px;
+}

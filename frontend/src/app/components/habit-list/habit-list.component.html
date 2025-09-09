@@ -1,10 +1,4 @@
 <div class="habit-list-container">
-  <div class="header">
-    <h2>My Habits</h2>
-    <button class="btn btn-primary" (click)="addNewHabit()">
-      Add New Habit
-    </button>
-  </div>
 
   <div class="error-message" *ngIf="errorMessage">
     {{ errorMessage }}
@@ -19,17 +13,17 @@
       <div class="habit-header">
         <h3>{{ habit.title }}</h3>
         <div class="habit-actions">
-          <button class="btn btn-small btn-success" (click)="logCompletion(habit.id)">
-            ✓ Complete
+          <button class="btn btn-small bg-success bg-opacity-25 action-button" (click)="logCompletion(habit.id)">
+            <i class="bi bi-bookmark-check"></i>
           </button>
-          <button class="btn btn-small btn-secondary" (click)="viewProgress(habit.id)">
-            Progress
+          <button class="btn btn-small bg-warning bg-opacity-25 action-button" (click)="viewProgress(habit.id)">
+            <i class="bi bi-bar-chart-fill"></i>
           </button>
-          <button class="btn btn-small btn-warning" (click)="editHabit(habit.id)">
-            Edit
+          <button class="btn btn-small bg-primary bg-opacity-25 action-button" (click)="editHabit(habit.id)">
+            <i class="bi bi-pencil-square"></i>
           </button>
-          <button class="btn btn-small btn-danger" (click)="deleteHabit(habit.id)">
-            Delete
+          <button class="btn btn-small bg-danger bg-opacity-25 action-button" (click)="deleteHabit(habit.id)">
+            <i class="bi bi-trash dark"></i>
           </button>
         </div>
       </div>

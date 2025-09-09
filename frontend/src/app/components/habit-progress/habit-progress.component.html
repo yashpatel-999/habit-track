@@ -1,11 +1,11 @@
 <div class="progress-container">
   <div class="header">
     <button class="btn btn-secondary" (click)="goBack()">
-      ← Back to Habits
+      <i class="bi bi-house-door-fill"></i>
     </button>
     <h2>Habit Progress</h2>
-    <button class="btn btn-success" (click)="logCompletion()" *ngIf="habit">
-      ✓ Log Completion
+    <button class="btn  comp-button bg-success bg-opacity-25" (click)="logCompletion()" *ngIf="habit">
+      <i class="bi bi-check-circle"></i> Mark Completed
     </button>
   </div>
 
@@ -46,13 +46,13 @@
     <!-- Recent Activity -->
     <div class="recent-activity">
       <h4>Quick Actions</h4>
-      
+
       <div class="activity-actions">
-        <button class="btn btn-primary" (click)="logCompletion()">
-          Log Completion Today
+        <button class="btn  comp-button bg-success bg-opacity-25" (click)="logCompletion()">
+          <i class="bi bi-check-circle"></i> Mark Completed
         </button>
-        <button class="btn btn-secondary" (click)="editHabit()">
-          Edit Habit
+        <button class="btn  bg-primary bg-opacity-25" (click)="editHabit()">
+          <i class="bi bi-pencil-square"></i> Edit Habit
         </button>
       </div>
     </div>
